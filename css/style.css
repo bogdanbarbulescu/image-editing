@@ -1,53 +1,86 @@
 /* css/style.css */
 
 body {
-    /* Optional: Add a subtle transition for background color changes */
+    /* Optional: Add a subtle transition for theme background changes */
     transition: background-color 0.3s ease;
+    /* Ensure body takes at least viewport height for sticky footer/layout */
+    min-height: 100vh;
+    /* Use Bootstrap's body background variable for theme compatibility */
+    background-color: var(--bs-body-bg);
 }
 
-.preview-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 1rem; /* Space between before/after */
-    justify-content: center; /* Center items if they wrap */
-}
-
-.preview-box {
-    flex: 1 1 45%; /* Allow shrinking, basis of 45% for two columns */
-    min-width: 280px; /* Minimum width before wrapping */
-    text-align: center;
-}
-
-canvas {
-    max-width: 100%;
-    height: auto;
-    /* Use Bootstrap's border color variable for theme compatibility */
+/* Style the single visible canvas */
+#mainCanvas {
+    max-width: 100%; /* Ensure canvas doesn't overflow its container */
+    height: auto; /* Maintain aspect ratio */
+    /* Use Bootstrap's CSS variables for theme-aware styling */
     border: 1px solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius-sm); /* Optional: slightly rounded corners */
-    background-color: var(--bs-tertiary-bg); /* Subtle background to see canvas bounds */
-    margin-top: 0.5rem;
+    border-radius: var(--bs-border-radius-sm); /* Optional: match card rounding */
+    background-color: var(--bs-tertiary-bg); /* Subtle background to easily see canvas bounds */
+    margin-top: 0.5rem; /* Space above canvas */
+    display: block; /* Prevents potential extra space below canvas */
+    margin-left: auto; /* Center canvas horizontally if container allows */
+    margin-right: auto; /* Center canvas horizontally if container allows */
+    /* Consider adding a default min-height or aspect-ratio if needed before image load */
+    /* min-height: 200px; */
 }
 
-/* Ensure sticky top works correctly */
+/* Ensure sticky controls card works correctly on larger screens */
 .sticky-lg-top {
-    z-index: 1010; /* Below navbar (1030 by default) */
+    /* Position relative to the viewport */
+    position: sticky;
+    /* Set the top offset, considering the navbar height (adjust 70px if navbar changes) */
+    top: 70px;
+    /* Needs a z-index to ensure it stays above scrolled content but below the navbar */
+    z-index: 1010; /* Default Bootstrap navbar z-index is 1030 */
 }
 
-/* Style the navbar based on the theme */
+/* Explicitly style the navbar background based on the theme */
+/* Using !important can be necessary to override Bootstrap's default component styles */
 [data-bs-theme="light"] .navbar {
-    background-color: var(--bs-light) !important; /* Or specific light color */
+    /* Use a variable or a specific color for light theme */
+    background-color: var(--bs-light) !important;
+    /* Or: background-color: #f8f9fa !important; */
 }
 
 [data-bs-theme="dark"] .navbar {
-     /* Use a slightly different dark color for navbar if desired */
+     /* Use a variable or a specific color for dark theme */
     background-color: var(--bs-dark) !important;
+     /* Or: background-color: #212529 !important; */
 }
 
-/* Optional: Adjust slider appearance slightly for dark theme if needed */
-/* Example: Make range track slightly lighter in dark mode */
-/* [data-bs-theme="dark"] .form-range::-webkit-slider-runnable-track {
-    background-color: #444;
+/* Minor adjustments for form controls inside the card for better density */
+.card-body .form-label.small {
+    margin-bottom: 0.2rem; /* Reduce space below small labels used for sliders */
+    font-size: 0.8rem;    /* Make label slightly smaller */
 }
-[data-bs-theme="dark"] .form-range::-moz-range-track {
-     background-color: #444;
-} */
+.card-body .mb-2 {
+    /* Slightly reduce default mb-2 for denser controls layout */
+    /* Use a smaller value if desired, e.g., 0.6rem */
+    margin-bottom: 0.75rem !important;
+}
+.card-body .form-range {
+    /* Optional: Adjust vertical alignment or height if needed */
+     /* height: 1rem; */
+}
+
+
+/* Styles for the active state of the view toggle buttons are handled by
+   Bootstrap's '.active' class and the 'btn-secondary' vs 'btn-outline-secondary'
+   classes which are applied dynamically via JavaScript.
+   No extra CSS is strictly required here unless you want further customization
+   beyond the standard Bootstrap button styles. */
+
+/* Example custom styling for active view toggle button (Optional) */
+/*
+.btn-group > .btn.active {
+   background-color: var(--bs-primary);
+   border-color: var(--bs-primary);
+   color: white;
+}
+*/
+
+/* Note: The CSS for the dashed split line is removed.
+   It's drawn directly onto the canvas using JavaScript in the `updateMainCanvasView`
+   function. This approach ensures the line accurately divides the canvas content
+   regardless of canvas scaling or positioning within the layout. */

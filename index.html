@@ -36,11 +36,11 @@
     </nav>
 
     <div class="container-fluid mt-3">
-        <div class="row g-3"> <!-- Added gutter 'g-3' for spacing -->
+        <div class="row g-3">
 
             <!-- Controls Card -->
             <div class="col-lg-4 col-xl-3 order-lg-2">
-                <div class="card shadow-sm sticky-lg-top" style="top: 70px;"> <!-- Added sticky top for larger screens -->
+                 <div class="card shadow-sm sticky-lg-top" style="top: 70px;">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Controls</h5>
                     </div>
@@ -51,64 +51,23 @@
                             <input class="form-control" type="file" id="imageLoader" accept="image/png, image/jpeg, image/jpg">
                         </div>
                         <hr>
-
-                        <!-- Sliders -->
-                        <div class="mb-2"> <!-- Reduced margin-bottom -->
-                            <label for="exposureSlider" class="form-label small">Exposure:</label>
-                            <input type="range" class="form-range" id="exposureSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                        <div class="mb-2">
-                            <label for="contrastSlider" class="form-label small">Contrast:</label>
-                            <input type="range" class="form-range" id="contrastSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                        <div class="mb-2">
-                            <label for="highlightsSlider" class="form-label small">Highlights:</label>
-                            <input type="range" class="form-range" id="highlightsSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                         <div class="mb-2">
-                            <label for="shadowsSlider" class="form-label small">Shadows:</label>
-                            <input type="range" class="form-range" id="shadowsSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                        <div class="mb-2">
-                            <label for="saturationSlider" class="form-label small">Saturation:</label>
-                            <input type="range" class="form-range" id="saturationSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                         <div class="mb-2">
-                            <label for="temperatureSlider" class="form-label small">Temperature:</label>
-                            <input type="range" class="form-range" id="temperatureSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                         <div class="mb-2">
-                            <label for="tintSlider" class="form-label small">Tint:</label>
-                            <input type="range" class="form-range" id="tintSlider" min="-100" max="100" value="0" step="1">
-                        </div>
-                        <div class="mb-2">
-                            <label for="sepiaSlider" class="form-label small">Sepia:</label>
-                            <input type="range" class="form-range" id="sepiaSlider" min="0" max="100" value="0" step="1">
-                        </div>
-                         <div class="mb-2">
-                            <label for="sharpnessSlider" class="form-label small">Sharpness:</label>
-                            <input type="range" class="form-range" id="sharpnessSlider" min="0" max="100" value="0" step="1" disabled> <!-- Disabled for now -->
-                        </div>
-
-                        <hr>
-
+                        <!-- Sliders (Keep as before) -->
+                         <div class="mb-2"> <label for="exposureSlider" class="form-label small">Exposure:</label> <input type="range" class="form-range" id="exposureSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="contrastSlider" class="form-label small">Contrast:</label> <input type="range" class="form-range" id="contrastSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="highlightsSlider" class="form-label small">Highlights:</label> <input type="range" class="form-range" id="highlightsSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="shadowsSlider" class="form-label small">Shadows:</label> <input type="range" class="form-range" id="shadowsSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="saturationSlider" class="form-label small">Saturation:</label> <input type="range" class="form-range" id="saturationSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="temperatureSlider" class="form-label small">Temperature:</label> <input type="range" class="form-range" id="temperatureSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="tintSlider" class="form-label small">Tint:</label> <input type="range" class="form-range" id="tintSlider" min="-100" max="100" value="0" step="1"> </div>
+                         <div class="mb-2"> <label for="sepiaSlider" class="form-label small">Sepia:</label> <input type="range" class="form-range" id="sepiaSlider" min="0" max="100" value="0" step="1"> </div>
+                         <hr>
                         <!-- Action Buttons -->
-                        <div class="d-grid gap-2 mb-3"> <!-- Use grid for full width buttons -->
-                            <button id="resetAllBtn" class="btn btn-warning">Reset All</button>
-                        </div>
-
+                        <div class="d-grid gap-2 mb-3"> <button id="resetAllBtn" class="btn btn-warning">Reset All</button> </div>
                         <!-- Export Section -->
-                         <div class="input-group mb-3">
-                             <label class="input-group-text" for="exportFormat">Export:</label>
-                             <select class="form-select" id="exportFormat">
-                                 <option value="image/png" selected>PNG</option>
-                                 <option value="image/jpeg">JPEG</option>
-                             </select>
-                             <button id="exportBtn" class="btn btn-primary">Export</button> <!-- Combined select and button -->
-                         </div>
-                    </div> <!-- /card-body -->
-                </div> <!-- /card -->
-            </div> <!-- /col -->
+                         <div class="input-group mb-3"> <label class="input-group-text" for="exportFormat">Export:</label> <select class="form-select" id="exportFormat"> <option value="image/png" selected>PNG</option> <option value="image/jpeg">JPEG</option> </select> <button id="exportBtn" class="btn btn-primary">Export</button> </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Image Preview Card -->
             <div class="col-lg-8 col-xl-9 order-lg-1">
@@ -116,20 +75,24 @@
                      <div class="card-header">
                         <h5 class="card-title mb-0">Preview</h5>
                     </div>
-                    <div class="card-body">
-                        <div class="preview-container">
-                            <div class="preview-box text-center"> <!-- Added text-center -->
-                                <h6 class="text-muted">Before</h6>
-                                <canvas id="canvasBefore"></canvas>
-                            </div>
-                            <div class="preview-box text-center"> <!-- Added text-center -->
-                                <h6 class="text-muted">After</h6>
-                                <canvas id="canvasAfter"></canvas>
-                            </div>
+                    <div class="card-body text-center"> <!-- Added text-center -->
+                        <!-- Single Visible Canvas -->
+                        <canvas id="mainCanvas"></canvas>
+
+                        <!-- View Toggle Buttons -->
+                        <div class="btn-group mt-3" role="group" aria-label="View Mode Toggle">
+                          <button type="button" class="btn btn-outline-secondary" id="viewBeforeBtn" data-viewmode="before">Before</button>
+                          <button type="button" class="btn btn-secondary active" id="viewAfterBtn" data-viewmode="after">After</button> <!-- Default active -->
+                          <button type="button" class="btn btn-outline-secondary" id="viewSplitBtn" data-viewmode="split">Split</button>
                         </div>
-                    </div> <!-- /card-body -->
-                </div> <!-- /card -->
-            </div> <!-- /col -->
+                    </div>
+                </div>
+
+                <!-- Hidden Canvases for internal processing -->
+                <canvas id="canvasBeforeHidden" style="display: none;"></canvas>
+                <canvas id="canvasAfterHidden" style="display: none;"></canvas>
+
+            </div>
 
         </div> <!-- /row -->
     </div> <!-- /container-fluid -->
