@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light"> <!-- Start with light theme -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Image Editor</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Image Editor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+               <button id="themeToggleBtn" class="btn btn-outline-secondary">
+                  <i class="bi bi-moon-stars-fill"></i> <!-- Default icon for light mode -->
+               </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+        <div class="row g-3"> <!-- Added gutter 'g-3' for spacing -->
+
+            <!-- Controls Card -->
+            <div class="col-lg-4 col-xl-3 order-lg-2">
+                <div class="card shadow-sm sticky-lg-top" style="top: 70px;"> <!-- Added sticky top for larger screens -->
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- File Upload -->
+                        <div class="mb-3">
+                            <label for="imageLoader" class="form-label">Upload Image:</label>
+                            <input class="form-control" type="file" id="imageLoader" accept="image/png, image/jpeg, image/jpg">
+                        </div>
+                        <hr>
+
+                        <!-- Sliders -->
+                        <div class="mb-2"> <!-- Reduced margin-bottom -->
+                            <label for="exposureSlider" class="form-label small">Exposure:</label>
+                            <input type="range" class="form-range" id="exposureSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="mb-2">
+                            <label for="contrastSlider" class="form-label small">Contrast:</label>
+                            <input type="range" class="form-range" id="contrastSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="mb-2">
+                            <label for="highlightsSlider" class="form-label small">Highlights:</label>
+                            <input type="range" class="form-range" id="highlightsSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                         <div class="mb-2">
+                            <label for="shadowsSlider" class="form-label small">Shadows:</label>
+                            <input type="range" class="form-range" id="shadowsSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="mb-2">
+                            <label for="saturationSlider" class="form-label small">Saturation:</label>
+                            <input type="range" class="form-range" id="saturationSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                         <div class="mb-2">
+                            <label for="temperatureSlider" class="form-label small">Temperature:</label>
+                            <input type="range" class="form-range" id="temperatureSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                         <div class="mb-2">
+                            <label for="tintSlider" class="form-label small">Tint:</label>
+                            <input type="range" class="form-range" id="tintSlider" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="mb-2">
+                            <label for="sepiaSlider" class="form-label small">Sepia:</label>
+                            <input type="range" class="form-range" id="sepiaSlider" min="0" max="100" value="0" step="1">
+                        </div>
+                         <div class="mb-2">
+                            <label for="sharpnessSlider" class="form-label small">Sharpness:</label>
+                            <input type="range" class="form-range" id="sharpnessSlider" min="0" max="100" value="0" step="1" disabled> <!-- Disabled for now -->
+                        </div>
+
+                        <hr>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 mb-3"> <!-- Use grid for full width buttons -->
+                            <button id="resetAllBtn" class="btn btn-warning">Reset All</button>
+                        </div>
+
+                        <!-- Export Section -->
+                         <div class="input-group mb-3">
+                             <label class="input-group-text" for="exportFormat">Export:</label>
+                             <select class="form-select" id="exportFormat">
+                                 <option value="image/png" selected>PNG</option>
+                                 <option value="image/jpeg">JPEG</option>
+                             </select>
+                             <button id="exportBtn" class="btn btn-primary">Export</button> <!-- Combined select and button -->
+                         </div>
+                    </div> <!-- /card-body -->
+                </div> <!-- /card -->
+            </div> <!-- /col -->
+
+            <!-- Image Preview Card -->
+            <div class="col-lg-8 col-xl-9 order-lg-1">
+                <div class="card shadow-sm mb-3">
+                     <div class="card-header">
+                        <h5 class="card-title mb-0">Preview</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="preview-container">
+                            <div class="preview-box text-center"> <!-- Added text-center -->
+                                <h6 class="text-muted">Before</h6>
+                                <canvas id="canvasBefore"></canvas>
+                            </div>
+                            <div class="preview-box text-center"> <!-- Added text-center -->
+                                <h6 class="text-muted">After</h6>
+                                <canvas id="canvasAfter"></canvas>
+                            </div>
+                        </div>
+                    </div> <!-- /card-body -->
+                </div> <!-- /card -->
+            </div> <!-- /col -->
+
+        </div> <!-- /row -->
+    </div> <!-- /container-fluid -->
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+
+</body>
+</html>

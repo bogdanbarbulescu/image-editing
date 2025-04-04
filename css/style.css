@@ -1,0 +1,53 @@
+/* css/style.css */
+
+body {
+    /* Optional: Add a subtle transition for background color changes */
+    transition: background-color 0.3s ease;
+}
+
+.preview-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1rem; /* Space between before/after */
+    justify-content: center; /* Center items if they wrap */
+}
+
+.preview-box {
+    flex: 1 1 45%; /* Allow shrinking, basis of 45% for two columns */
+    min-width: 280px; /* Minimum width before wrapping */
+    text-align: center;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    /* Use Bootstrap's border color variable for theme compatibility */
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-sm); /* Optional: slightly rounded corners */
+    background-color: var(--bs-tertiary-bg); /* Subtle background to see canvas bounds */
+    margin-top: 0.5rem;
+}
+
+/* Ensure sticky top works correctly */
+.sticky-lg-top {
+    z-index: 1010; /* Below navbar (1030 by default) */
+}
+
+/* Style the navbar based on the theme */
+[data-bs-theme="light"] .navbar {
+    background-color: var(--bs-light) !important; /* Or specific light color */
+}
+
+[data-bs-theme="dark"] .navbar {
+     /* Use a slightly different dark color for navbar if desired */
+    background-color: var(--bs-dark) !important;
+}
+
+/* Optional: Adjust slider appearance slightly for dark theme if needed */
+/* Example: Make range track slightly lighter in dark mode */
+/* [data-bs-theme="dark"] .form-range::-webkit-slider-runnable-track {
+    background-color: #444;
+}
+[data-bs-theme="dark"] .form-range::-moz-range-track {
+     background-color: #444;
+} */
